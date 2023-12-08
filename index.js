@@ -59,7 +59,7 @@ async function run() {
             console.log(`SIMPLE CRUD IS RUNNING ON PORT:${port}`);
         });
     } catch (error) {
-        console.error('Error connecting to MongoDB:', error.message);
+        console.error('Error connecting to MongoDB ondex.js:', error.message);
     }
 }
 

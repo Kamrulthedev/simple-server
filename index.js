@@ -31,7 +31,7 @@ async function run() {
             res.send(result)
         })
         app.post('/users/:id', async(req, res)=>{
-            const id = req.params._id;
+            const id = req.params.id;
             const query = {_id: new ObjectId(id)}
             const user =await userCollection.findOne(query)
             res.send(user)

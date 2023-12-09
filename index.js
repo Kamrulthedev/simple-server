@@ -30,11 +30,26 @@ async function run() {
             const result = await cursor.toArray();
             res.send(result)
         })
-        app.post('/users/:id', async(req, res)=>{
+        app.get('/users/:id', async(req, res)=>{
             const id = req.params.id;
             const query = {_id: new ObjectId(id)}
             const user =await userCollection.findOne(query)
             res.send(user)
+        })
+
+        app.put('/users/:id', async(req, res) =>{
+            const id = req.params.id;
+            const User = req.body;
+            const filter = {_id: new ObjectId(id)}
+            const options = {upsert: true}
+            const updateUser = {
+                $set: {
+                    name:User.name,
+                    email:User.email
+                }
+            }
+            const result = await userCollection.updateOne(filter, updateUser, options)
+            res.send(result)
         })
 
         app.post('/users', async (req, res) => {
